@@ -113,7 +113,7 @@ const Checkout = () => {
         }
         navigate(`/confirmation/${id}`, { state: { booking: data.booking } }); // redirect after booking
       } else {
-        toast.error("Booking failed: " + data.message);
+        console.error("Booking failed: " + data.message);
       }
     } catch (error) {
       console.error("Booking error:", error);
