@@ -1,15 +1,17 @@
-# 🚀 BookIt Backend (Node.js + TypeScript + MongoDB)
+# 🚀 BookIt (Node.js + TypeScript + MongoDB + React.js(Vite))
 
-This is the backend service for the **BookIt** adventure experience booking application. It provides robust APIs for managing experiences, bookings, promo codes, and adventure slots.
+This is the full stack service for the **BookIt** adventure experience booking application. It provides managing experiences, bookings, promo codes, and adventure slots.
 
 ## ✨ Features at a Glance
 
-* ✅ **Experience Management:** Fetch and display all available experiences.
-* ✅ **Booking System:** Book an adventure slot for a specific experience.
-* ✅ **Promo Codes:** Validate and apply promotional codes during booking.
-* ✅ **Capacity Control:** Update and manage the capacity of adventure slots.
-* ✅ **Duplicate Prevention:** Prevent duplicate bookings based on a unique `name` + `email` combination.
-* ✅ **Deployment:** Seamlessly deployed on **Render**.
+* ✅ **Modern UI:** Clean, responsive interface built with React and Tailwind CSS.  
+* ✅ **Experience Listing:** Display all adventure experiences fetched from the backend.  
+* ✅ **Dynamic Routing:** Navigate between pages using React Router DOM.  
+* ✅ **Booking Form:** Book slots by entering your name, email, and preferred time.  
+* ✅ **Toast Notifications:** Instant success/error alerts using React Toastify.  
+* ✅ **Duplicate Booking Alert:** Shows an error toast if the user has already booked with the same name and email.  
+* ✅ **Promo Code Support:** Apply and validate promo codes directly on the booking page.  
+* ✅ **Deployment Ready:** Frontend deployed on **Vercel** and integrated with backend API.  
 
 ---
 
@@ -17,66 +19,16 @@ This is the backend service for the **BookIt** adventure experience booking appl
 
 The project is built on a modern, type-safe stack for robust development and scalability.
 
-| Technology | Purpose |
-| :--- | :--- |
-| **Node.js** | JavaScript runtime environment. |
-| **Express.js** | Fast, unopinionated, minimalist web framework. |
-| **TypeScript** | Adds static typing for safer, more scalable code. |
-| **MongoDB + Mongoose** | NoSQL database and an elegant MongoDB object modeling tool. |
-| **dotenv** | Loads environment variables from a `.env` file. |
-| **CORS** | Middleware to enable Cross-Origin Resource Sharing. |
-| **Render** | Deployment and hosting platform. |
-| **nodemon** | Utility for development (auto-reloads on file changes). |
-
----
-
-## 📁 Project Structure
-
-The codebase follows a standard MVC-like pattern for clear separation of concerns.
-
----
-
-## 🧰 Setup Instructions
-
-Follow these steps to get a local copy of the project up and running.
-
-### 1️⃣ Clone the Repository
-
-```bash
-git clone [https://github.com/](https://github.com/)<your-username>/<your-repo-name>.git
-cd Backend
-```
-
-### 2️⃣ Install dependencies
-
-```bash
-npm install
-```
-
-### 3️⃣ Setup environment variables
-
-```bash
-MONGO_URI=your_mongodb_connection_string
-PORT=5000
-```
-
-## 🧪 Running the Project Locally
-
-### 🟢 Development Mode (with auto-reload)
-```bash
-npm run dev
-```
-
-### 🟢 Build the Project
-```bash
-npm run build
-```
-
-### 🟢 Start project
-```bash
-npm start
-```
-
-
+| **Technology** | **Description** |
+|-----------------|-----------------|
+| **Node.js** | Runtime environment for JavaScript on the server |
+| **Express.js** | Web framework for Node.js |
+| **TypeScript** | Type-safe development language |
+| **MongoDB + Mongoose** | NoSQL database and ODM |
+| **React.js** | Frontend library for building interactive UIs |
+| **dotenv** | Environment variable management |
+| **CORS** | Enables cross-origin resource sharing |
+| **Render** | Cloud platform for backend deployment |
+| **Vercel** | Hosting for frontend (React) |
 
 
