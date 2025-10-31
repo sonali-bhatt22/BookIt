@@ -10,16 +10,18 @@ import { ToastContainer } from 'react-toastify'
 function App() {
  
   const [searchQuery, setSearchQuery] = useState("");
-
+  const handleSearch = (query: string) => {
+    setSearchQuery(query); 
+  };
   return (
     <>
      <div className='w-screen h-screen justify-center items-center flex-wrap overflow-x-hidden'>
-      <Navbar onSearch={setSearchQuery}/>
+      <Navbar onSearch={handleSearch} />
      <div className='lg:px-32 md:px-5 px-5 flex py-5'>
       <Routes>
         <Route path='/' element={<Main searchQuery={searchQuery}/>}/>
          <Route path="/experience/:id" element={<Details/>} />
-        <Route path="/experience/:id/checkout" element={<Checkout />} />
+         <Route path="/experience/:id/checkout" element={<Checkout />} />
          <Route path="/confirmation/:id" element={<Confirmation />} />
             
       </Routes>
