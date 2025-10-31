@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams, useLocation } from "react-router-dom";
 import { IoArrowBack } from "react-icons/io5";
+import { toast } from "react-toastify";
 const Checkout = () => {
   const location = useLocation();
   const nameRef = useRef<HTMLInputElement>(null);
@@ -51,7 +52,7 @@ const Checkout = () => {
   };
   const handleBooking = async () => {
     if (!experience || !selectedDate || !selectedTime) {
-      ("Missing booking details");
+      toast.error("Missing booking details");
       return;
     }
 
@@ -60,7 +61,7 @@ const Checkout = () => {
     const promoCode = promoRef?.current?.value;
 
     if (!name || !email) {
-      alert("Please fill in your name and email");
+      toast.info("Please fill in your name and email");
       return;
     }
 
@@ -85,7 +86,11 @@ const Checkout = () => {
       );
       const data = await response.json();
       if (response.ok) {
-        alert("🎉 Booking Successful!");
+        if (data.message === "You have already booked this experience.") {
+        toast.info("⚠️ You’ve already booked this experience!");
+        return;
+        }
+        toast.success("🎉 Booking Successful!");
         console.log("Booking:", data.booking);
         try {
           const slotUpdateResponse = await fetch(
@@ -108,11 +113,11 @@ const Checkout = () => {
         }
         navigate(`/confirmation/${id}`, { state: { booking: data.booking } }); // redirect after booking
       } else {
-        alert("Booking failed: " + data.message);
+        toast.error("Booking failed: " + data.message);
       }
     } catch (error) {
       console.error("Booking error:", error);
-      alert("Error while booking");
+      toast.error("Error while booking");
     }
   };
   const handleInputChange = () => {

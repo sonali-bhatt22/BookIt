@@ -6,6 +6,7 @@ import Details from './pages/Details'
 import { useState } from 'react'
 import Checkout from './pages/Checkout'
 import Confirmation from './pages/Confirmation'
+import { ToastContainer } from 'react-toastify'
 function App() {
  
   const [searchQuery, setSearchQuery] = useState("");
@@ -22,6 +23,7 @@ function App() {
          <Route path="/confirmation/:id" element={<Confirmation />} />
             
       </Routes>
+      <ToastContainer position="top-right" autoClose={3000} />
        
      </div>
      </div>

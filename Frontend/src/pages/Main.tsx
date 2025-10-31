@@ -19,7 +19,7 @@ const Main: React.FC<MainProps> = ({ searchQuery }) => {
   const getData = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5000/api/experiences"
+        `${import.meta.env.VITE_BASE_URL}/api/experiences`
       );
       const data: Experience[] = await response.json();
       console.log(data);
