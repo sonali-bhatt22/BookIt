@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams, useLocation } from "react-router-dom";
 import { IoArrowBack } from "react-icons/io5";
-const Checkout = ({}) => {
+const Checkout = () => {
   const location = useLocation();
   const nameRef = useRef<HTMLInputElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
@@ -25,11 +25,14 @@ const Checkout = ({}) => {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/promo/validate", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ code: promoCode, price: baseTotal }),
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_BASE_URL}/api/promo/validate`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ code: promoCode, price: baseTotal }),
+        }
+      );
 
       const data = await response.json();
 
@@ -48,7 +51,7 @@ const Checkout = ({}) => {
   };
   const handleBooking = async () => {
     if (!experience || !selectedDate || !selectedTime) {
-      alert("Missing booking details");
+      ("Missing booking details");
       return;
     }
 
@@ -60,7 +63,6 @@ const Checkout = ({}) => {
       alert("Please fill in your name and email");
       return;
     }
-    
 
     const bookingData = {
       experienceId: experience._id,
@@ -73,18 +75,21 @@ const Checkout = ({}) => {
     };
 
     try {
-      const response = await fetch("http://localhost:5000/api/bookings", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(bookingData),
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_BASE_URL}/api/bookings`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(bookingData),
+        }
+      );
       const data = await response.json();
       if (response.ok) {
         alert("🎉 Booking Successful!");
         console.log("Booking:", data.booking);
         try {
           const slotUpdateResponse = await fetch(
-            "http://localhost:5000/api/slots/update",
+            `${import.meta.env.VITE_BASE_URL}/api/slots/update`,
             {
               method: "POST",
               headers: { "Content-Type": "application/json" },
@@ -111,13 +116,20 @@ const Checkout = ({}) => {
     }
   };
   const handleInputChange = () => {
-  const nameValue = nameRef.current?.value;
-  const emailValue = emailRef.current?.value;
-  setIsActive(!!(nameValue && emailValue));
-};
+    const nameValue = nameRef.current?.value;
+    const emailValue = emailRef.current?.value;
+    setIsActive(!!(nameValue && emailValue));
+  };
   return (
     <div className="flex flex-col w-[100%] sm:gap-5 gap-2 ">
-      <h1 className="flex items-center gap-2"><IoArrowBack onClick={()=>navigate(-1)}  size={20} className="cursor-pointer" />Checkout</h1>
+      <h1 className="flex items-center gap-2">
+        <IoArrowBack
+          onClick={() => navigate(-1)}
+          size={20}
+          className="cursor-pointer"
+        />
+        Checkout
+      </h1>
       <div className="flex lg:flex-row flex-col sm:gap-10 gap-5">
         <div className="lg:w-[60%] w-[100%] sm:h-[240px] h-[170px] bg-[#EFEFEF] sm:rounded-lg rounded-md sm:p-[24px] p-[14px] flex flex-col  sm:text-[14px] text-[10px] gap-[16px]">
           <div className="flex gap-3">
@@ -127,7 +139,7 @@ const Checkout = ({}) => {
               </label>
               <input
                 ref={nameRef}
-                 onChange={handleInputChange}
+                onChange={handleInputChange}
                 className="sm:px-[16px] sm:py-[12px] px-[8px] py-[5px] sm:rounded-lg rounded-md bg-[#DDDDDD] text-[#727272] outline-none"
                 type="text"
                 placeholder="Your name"
@@ -139,7 +151,7 @@ const Checkout = ({}) => {
               </label>
               <input
                 ref={emailRef}
-                 onChange={handleInputChange}
+                onChange={handleInputChange}
                 className="sm:px-[16px] sm:py-[12px] px-[8px] py-[5px] sm:rounded-lg rounded-md min-w-full bg-[#DDDDDD] text-[#727272] outline-none"
                 type="email"
                 placeholder="Your email"
@@ -159,14 +171,16 @@ const Checkout = ({}) => {
             >
               Apply
             </button>
-            
           </div>
           {promoMessage && (
-            <p className="sm:text-[12px] text-[8px] text-gray-600">{promoMessage}</p>
+            <p className="sm:text-[12px] text-[8px] text-gray-600">
+              {promoMessage}
+            </p>
           )}
-          
+
           <p className="text-[#5B5B5B] flex items-center gap-3">
-            <input type="checkbox"  className="text-black " />I agree to the terms and safety policy
+            <input type="checkbox" className="text-black " />I agree to the
+            terms and safety policy
           </p>
         </div>
         <div className="lg:w-[30%] w-[100%] sm:h-[349px]  h-[230px] bg-[#EFEFEF] sm:p-[24px] p-[14px] flex flex-col sm:gap-[10px] gap-[5px] sm:text-[16px] text-[12px] text-[#656565] sm:rounded-xl rounded-md">
@@ -198,9 +212,10 @@ const Checkout = ({}) => {
           <button
             onClick={handleBooking}
             className={`bg-[#D7D7D7] sm:px-[20px] sm:py-[12px]  px-[12px] py-[6px] rounded-lg font-[500] text-[#7F7F7F] text-center
-              ${ isActive
-              ? "bg-[#FFD643] text-black hover:bg-[#ffcc00]"
-              : "bg-[#D7D7D7] text-[#7F7F7F] cursor-not-allowed"
+              ${
+                isActive
+                  ? "bg-[#FFD643] text-black hover:bg-[#ffcc00]"
+                  : "bg-[#D7D7D7] text-[#7F7F7F] cursor-not-allowed"
               }
               `}
           >

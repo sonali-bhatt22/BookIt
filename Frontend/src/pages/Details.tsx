@@ -28,11 +28,9 @@ const Details: React.FC = () => {
   const navigate = useNavigate();
   const getDetails = async () => {
     try {
-      console.log("Fetching experience with ID:", id);
-      console.log("Full URL:", `http://localhost:5000/api/experiences/${id}`);
 
       const response = await fetch(
-        `http://localhost:5000/api/experiences/${id}`,
+        `${import.meta.env.VITE_BASE_URL}/api/experiences/${id}`,
         {
           method: "GET",
         }
@@ -48,13 +46,13 @@ const Details: React.FC = () => {
   const handleSlotAvailability = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/slots/${id}/availability`
+        `${import.meta.env.VITE_BASE_URL}/api/slots/${id}/availability`
       );
       const data = await response.json();
 
       if (response.ok) {
-        console.log("Slot Availability:", data.slots);
-        setSlots(data.slots); // ✅ Update state with latest data
+        //console.log("Slot Availability:", data.slots);
+        setSlots(data.slots);
       } else {
         console.error(data.message);
       }
@@ -74,7 +72,14 @@ const Details: React.FC = () => {
   if (!experience) return <p>No experience found</p>;
   return (
     <div className="flex flex-col  w-[100%] gap-5">
-      <h1 className="flex items-center gap-2 sm:text-[20px] text-[12px]"><IoArrowBack onClick={()=>navigate(-1)}  size={20} className="cursor-pointer" />Details</h1>
+      <h1 className="flex items-center gap-2 sm:text-[20px] text-[12px]">
+        <IoArrowBack
+          onClick={() => navigate(-1)}
+          size={20}
+          className="cursor-pointer"
+        />
+        Details
+      </h1>
       <div className="flex lg:flex-row flex-col sm:gap-10 gap-5">
         <img
           className="lg:w-[60%] lg:h-[381px] md:w-[100%] rounded-xl object-cover"
@@ -138,8 +143,12 @@ const Details: React.FC = () => {
       </div>
       <div className="h-[406px] w-[765px]  sm:gap-4 gap-2 flex flex-col">
         <div className="flex flex-col gap-2 flex-wrap">
-          <h1 className="md:text-[24px] sm:text-[14px] text-[12px]  font-[500]">{experience.title}</h1>
-          <p className="sm:text-[16px] text-[10px] whitespace-normal break-words text-[#6C6C6C]">{experience.description}</p>
+          <h1 className="md:text-[24px] sm:text-[14px] text-[12px]  font-[500]">
+            {experience.title}
+          </h1>
+          <p className="sm:text-[16px] text-[10px] whitespace-normal break-words text-[#6C6C6C]">
+            {experience.description}
+          </p>
         </div>
         <h1 className="font-[500] sm:text-[18px] text-[12px]">Choose Date</h1>
         <div className="flex gap-3">
@@ -181,9 +190,7 @@ const Details: React.FC = () => {
                   {slot.capacity <= 0 ? (
                     <span className="text-[#838383]">Sold out</span>
                   ) : (
-                    <span className="text-[#FF4C0A]">
-                      {slot.capacity} left
-                    </span>
+                    <span className="text-[#FF4C0A]">{slot.capacity} left</span>
                   )}
                 </span>
               </button>
