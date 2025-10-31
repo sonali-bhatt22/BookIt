@@ -190,7 +190,7 @@ const Checkout = () => {
         </div>
         <div className="lg:w-[30%] w-[100%] sm:h-[349px]  h-[230px] bg-[#EFEFEF] sm:p-[24px] p-[14px] flex flex-col sm:gap-[10px] gap-[5px] sm:text-[16px] text-[12px] text-[#656565] sm:rounded-xl rounded-md">
           <p className="flex justify-between">
-            Experience <span className="text-black ">{experience.price}</span>
+            Experience <span className="text-black ">{experience.title}</span>
           </p>
           <p className="flex justify-between">
             Date{" "}
@@ -205,7 +205,7 @@ const Checkout = () => {
           </p>
           <p className="flex justify-between">
             Subtotal
-            <span className="text-black ">{experience.price * quantity}</span>
+            <span className="text-black ">₹{experience.price * quantity}</span>
           </p>
           <p className="flex justify-between">
             Taxes <span className="text-black">₹59</span>

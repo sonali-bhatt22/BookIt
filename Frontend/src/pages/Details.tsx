@@ -69,7 +69,7 @@ const Details: React.FC = () => {
     fetchAll();
   }, [id]);
 
-  if (!experience) return <p>No experience found</p>;
+  if (!experience) return null;
   return (
     <div className="flex flex-col  w-[100%] gap-5">
       <h1 className="flex items-center gap-2 sm:text-[20px] text-[12px]">
@@ -94,13 +94,13 @@ const Details: React.FC = () => {
             Quantity{" "}
             <span>
               {" "}
-              <button
+              <button className=" hover:text-red-500"
                 onClick={() => setQuantity((prev) => Math.max(1, prev - 1))}
               >
                 -
-              </button>{" "}
+              </button >{" "}
               {quantity}{" "}
-              <button onClick={() => setQuantity((prev) => prev + 1)}>+</button>
+              <button className=" hover:text-red-500" onClick={() => setQuantity((prev) => prev + 1)}>+</button>
             </span>
           </p>
           <p className="flex justify-between">
