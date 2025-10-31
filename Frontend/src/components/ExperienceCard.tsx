@@ -7,7 +7,7 @@ interface Experience {
   image: string;
   location: string;
   price: number;
-  // add any other fields your mockapi experience has
+  
 }
 interface ExperienceCardProps{
     experience: Experience;
