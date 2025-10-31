@@ -212,7 +212,7 @@ const Checkout = () => {
           </p>
           <hr className="border-t border-[#D9D9D9] border-[1px]" />
           <h1 className="text-black sm:text-[20px] text-[14px] flex justify-between">
-            Total <span className="text-black ">{discountedPrice}</span>
+            Total <span className="text-black ">₹{(discountedPrice ?? baseTotal) + 59}</span>
           </h1>
           <button
             onClick={handleBooking}
